@@ -59,9 +59,10 @@ public class KeelungSightsCrawler {
 //            }
         }
     }
+
     public Sight RealSight(String realUrl) throws IOException {
         Sight sight = new Sight();
-        Document doc = Jsoup.connect(realUrl).userAgent("Mozilla").get();
+        Document doc = Jsoup.connect(realUrl).userAgent("Mozilla").timeout(10000).get();
         Element part = doc.getElementById("point_area");
         assert part != null;
         sight.setSightName(part.select("meta[itemprop=name]").attr("content"));
